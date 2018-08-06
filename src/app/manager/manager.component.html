@@ -1,0 +1,37 @@
+<div class="container">
+  <form #myForm (ngSubmit)="onSubmit(); myForm.reset()" style="max-width:250px;">
+    <div class="form-group">
+      <label for="valor">Valor</label>
+      <input type="text" class="form-control" [(ngModel)]="pack.valor" name="valor" #tValor="ngModel" required>
+    </div>
+    <div *ngIf="tValor.invalid && (tValor.dirty || tValor.touched)" class="alert alert-danger">
+      <div *ngIf="tValor.errors.required">
+        Valor es necesario.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="peso">Peso</label>
+      <input type="text" class="form-control" [(ngModel)]="pack.peso" name="peso" #tPeso="ngModel" required>
+    </div>
+    <div *ngIf="tPeso.invalid && (tPeso.dirty || tPeso.touched)" class="alert alert-danger">
+      <div *ngIf="tPeso.errors.required">
+        Peso es necesario.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="origen">Origen</label>
+      <select type="text" class="form-control" #co (change)="setCountry(co.value)">
+        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="destino">Destino</label>
+      <select type="text" class="form-control" #ci (change)="setCity(ci.value)">
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" >Submit</button>    
+    </div>  
+  </form>
+</div>
